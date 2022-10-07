@@ -24,8 +24,21 @@ namespace ListOfDucks
             };
 
             IComparer<Duck> sizeComparer = new DuckComparerBySize();
-            ducks.Sort(sizeComparer);
+            IComparer<Duck> kindComparer = new DuckComparerByKind();
 
+            DuckComparer comparer = new DuckComparer();
+            Console.WriteLine($"Sorting by Kind then Size");
+            comparer.SortBy = SortCriteria.KindThenSize;
+            ducks.Sort(comparer);
+            PrintDucks(ducks);
+            Console.WriteLine($"\n\nSorting by Size then Kind");
+            comparer.SortBy = SortCriteria.SizeThenKind;
+            ducks.Sort(comparer);
+            PrintDucks(ducks);
+
+
+            //ducks.Sort(kindComparer);
+            //ducks.Sort(sizeComparer);
             //ducks.Sort();
             PrintDucks(ducks);
         }
